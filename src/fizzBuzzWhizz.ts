@@ -26,4 +26,39 @@ Add the following new rule, if a number is prime return Whizz. Only worry about 
   4      4
   5      BuzzWhizz
  */
-export const game = (input: number) => input;
+
+const esPrimo = (input: number): boolean => {
+  if (input < 2) {
+    return false;
+  }
+
+  for (let i = 2; i < input; i++) {
+    if (input % i === 0) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+export const game = (input: number) => {
+  const primo = esPrimo(input);
+
+  if (input % 3 === 0 && input % 5 === 0) {
+    return "FizzBuzz";
+  }
+
+  if (input % 3 === 0) {
+    return primo ? "FizzWhizz" : "Fizz";
+  }
+
+  if (input % 5 === 0) {
+    return primo ? "BuzzWhizz" : "Buzz";
+  }
+
+  if (primo) {
+    return "Whizz";
+  }
+
+  return input;
+};
